@@ -28,6 +28,10 @@ Type: Syncopate (wordmark and small caps labels only), Sora headings, IBM Plex S
 - The teal-to-pink gradient (`--sunset`) appears only as a 2–3px stripe or on one short headline phrase.
 - Primary buttons are ink. No gradient backgrounds, neon glows, or palm imagery.
 
+## One-page designs
+
+New designs (architecture, pipelines, page layouts, tooling) start as a single annotated page before any long doc or code. Method, layout template, diagram types, and good versus bad examples: [one-page-designs.md](one-page-designs.md).
+
 ## Use
 
 Pin to a release so later changes don't restyle a project unexpectedly:
