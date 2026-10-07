@@ -1,0 +1,32 @@
+/* Vice Night: default color scheme for all projects.
+   Spec and live preview: https://kflipdev.github.io/design-system/
+   Source: https://github.com/KFlipDev/design-system */
+@import url("https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Sora:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+:root {
+  --bg: #F6F7F8;  --surface: #FFFFFF;  --ink: #15171D;
+  --muted: #5C6270;  --line: #E2E4E9;
+  --teal: #00808C;  --teal-bright: #2BC4CF;   /* --teal is text-safe; -bright is fills only */
+  --pink: #C2307A;  --pink-bright: #F06FAE;
+  --sunset: linear-gradient(90deg, var(--teal-bright), var(--pink-bright));
+  --code-bg: #15171D;  --code-fg: #E8EAEE;
+  --f-mark: "Syncopate", "Eurostile", "Arial Black", sans-serif;
+  --f-head: "Sora", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101218;  --surface: #171A22;  --ink: #ECEEF2;
+    --muted: #9AA1AF;  --line: #262A35;
+    --teal: #4FD6DE;  --pink: #FF85BF;
+    --code-bg: #0B0D12;  color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101218;  --surface: #171A22;  --ink: #ECEEF2;
+  --muted: #9AA1AF;  --line: #262A35;
+  --teal: #4FD6DE;  --pink: #FF85BF;
+  --code-bg: #0B0D12;  color-scheme: dark;
+}
