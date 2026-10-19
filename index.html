@@ -23,6 +23,8 @@
   --sunset: linear-gradient(90deg, var(--teal-bright), var(--pink-bright));
   --code-bg: #15171D;
   --code-fg: #E8EAEE;
+  /* Depth scale (cool slate): containers step darker, cards on top */
+  --depth-1: #E9EEF5; --depth-2: #DCE3EE; --depth-3: #FFFFFF; --depth-inset: #F3F6FA;
 
   --f-mark: "Syncopate", "Eurostile", "Arial Black", sans-serif;
   --f-head: "Sora", "Segoe UI", system-ui, sans-serif;
@@ -35,12 +37,14 @@
     --bg: #101218; --surface: #171A22; --ink: #ECEEF2; --muted: #9AA1AF; --line: #262A35;
     --teal: #4FD6DE; --teal-bright: #2BC4CF; --pink: #FF85BF; --pink-bright: #F06FAE;
     --code-bg: #0B0D12; --code-fg: #E8EAEE; color-scheme: dark;
+    --depth-1: #141A24; --depth-2: #1B2331; --depth-3: #253043; --depth-inset: #172030;
   }
 }
 :root[data-theme="dark"] {
   --bg: #101218; --surface: #171A22; --ink: #ECEEF2; --muted: #9AA1AF; --line: #262A35;
   --teal: #4FD6DE; --teal-bright: #2BC4CF; --pink: #FF85BF; --pink-bright: #F06FAE;
   --code-bg: #0B0D12; --code-fg: #E8EAEE; color-scheme: dark;
+    --depth-1: #141A24; --depth-2: #1B2331; --depth-3: #253043; --depth-inset: #172030;
 }
 
 * { box-sizing: border-box; }
@@ -118,6 +122,23 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
 .rules li { padding-left: 18px; position: relative; color: var(--ink); }
 .rules li::before { content: ""; position: absolute; left: 0; top: .7em; width: 8px; height: 2px; background: var(--teal-bright); }
 .rules li.dont::before { background: var(--pink-bright); }
+.rules code { font: 13px var(--f-mono); color: var(--muted); }
+/* depth demo */
+.depth { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 720px) { .depth { grid-template-columns: 1fr; } }
+.d1 { background: var(--depth-1); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; }
+.d1 > .lab, .d2 > .lab { font: 600 11px/1 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.d2 { background: var(--depth-2); border-radius: 8px; padding: 10px 12px 12px; display: grid; gap: 8px; }
+.d2 .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+.d3 { background: var(--depth-3); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; display: grid; gap: 6px; min-width: 0; }
+.d3 .eyebrow { margin: 0; font-size: 9.5px; }
+.d3 b { font: 600 14px var(--f-head); overflow-wrap: anywhere; }
+.d3.hot { border: 2px solid var(--pink); }
+.di { background: var(--depth-inset); border: 1px solid var(--line); border-radius: 4px; padding: 4px 8px; font: 12px var(--f-mono); color: var(--muted); overflow-wrap: anywhere; }
+.scale { display: grid; gap: 6px; font-size: 14px; }
+.scale div { display: grid; grid-template-columns: 34px 120px 1fr; gap: 10px; align-items: center; }
+.scale i { width: 34px; height: 22px; border-radius: 4px; border: 1px solid var(--line); }
+.scale code { font: 12px var(--f-mono); color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -181,6 +202,34 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
   </section>
 
   <section>
+    <header><h2>Depth</h2><p>For nested boxes in diagrams and dashboards. Containers step a little darker with each level of nesting, in a faint cool slate; the cards that hold the content sit on top in white. Dark mode reverses it: deeper means lighter. Always step one way, never alternate.</p></header>
+    <div class="scale">
+      <div><i style="background:var(--bg)"></i><code>--bg</code><span>Level 0: the page</span></div>
+      <div><i style="background:var(--depth-1)"></i><code>--depth-1</code><span>Level 1: outer container (a host, a zone)</span></div>
+      <div><i style="background:var(--depth-2)"></i><code>--depth-2</code><span>Level 2: groups inside it (layers, bands)</span></div>
+      <div><i style="background:var(--depth-3)"></i><code>--depth-3</code><span>Level 3: cards, the things themselves</span></div>
+      <div><i style="background:var(--depth-inset)"></i><code>--depth-inset</code><span>Chips and code inside a card</span></div>
+    </div>
+    <div class="depth">
+      <div class="d1"><p class="lab">PRD · HP Z840</p>
+        <div class="d2"><p class="lab">Guests</p><div class="row">
+          <div class="d3"><p class="eyebrow">LXC</p><b>debian-flamenco-01</b><div class="di">manager :8080</div></div>
+          <div class="d3"><p class="eyebrow">VM</p><b>ubuntu-gpu-01</b><div class="di">flamenco-worker</div></div></div></div>
+        <div class="d2"><p class="lab">Hardware</p><div class="row">
+          <div class="d3"><b>2× 300 GB SAS</b></div>
+          <div class="d3 hot"><p class="eyebrow">GPU</p><b>Quadro M5000</b></div></div></div>
+      </div>
+      <ul class="rules" style="grid-template-columns:1fr;align-content:start">
+        <li>One step per nesting level. Three container levels at most; past that, split the diagram.</li>
+        <li>Cards are always <code>--depth-3</code>, at any depth, so content reads as one layer.</li>
+        <li>Labels on <code>--depth-1</code> and <code>--depth-2</code> use <code>--muted</code> or <code>--ink</code>. Teal and pink text stays on cards.</li>
+        <li class="dont">No teal or pink text on depth fills in light mode: it falls to about 3.6–4.0:1, under the 4.5:1 minimum.</li>
+        <li class="dont">Don't tint the depth scale with teal. Teal means links and status.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
     <header><h2>In use</h2><p>A sample home page built only from the tokens above.</p></header>
     <div class="mock">
       <div class="stripe"></div>
@@ -232,6 +281,10 @@ const SW = [
   ["Teal Bright", "--teal-bright", "#2BC4CF", "#2BC4CF", "Fills, stripe, status"],
   ["Vice Pink", "--pink", "#C2307A", "#FF85BF", "One highlight per screen"],
   ["Pink Bright", "--pink-bright", "#F06FAE", "#F06FAE", "Stripe end, underline"],
+  ["Depth 1", "--depth-1", "#E9EEF5", "#141A24", "Outer container"],
+  ["Depth 2", "--depth-2", "#DCE3EE", "#1B2331", "Groups inside it"],
+  ["Depth 3", "--depth-3", "#FFFFFF", "#253043", "Cards"],
+  ["Depth inset", "--depth-inset", "#F3F6FA", "#172030", "Chips inside cards"],
 ];
 const box = document.getElementById("swatches");
 SW.forEach(([name, tok, light, dark, role]) => {
@@ -248,6 +301,7 @@ const tokens = `:root {
   --teal: #00808C;  --teal-bright: #2BC4CF;
   --pink: #C2307A;  --pink-bright: #F06FAE;
   --sunset: linear-gradient(90deg, var(--teal-bright), var(--pink-bright));
+  --depth-1: #E9EEF5;  --depth-2: #DCE3EE;  --depth-3: #FFFFFF;  --depth-inset: #F3F6FA;
   --f-mark: "Syncopate", sans-serif;
   --f-head: "Sora", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", system-ui, sans-serif;
@@ -258,6 +312,7 @@ const tokens = `:root {
     --bg: #101218;  --surface: #171A22;  --ink: #ECEEF2;
     --muted: #9AA1AF;  --line: #262A35;
     --teal: #4FD6DE;  --pink: #FF85BF;
+    --depth-1: #141A24;  --depth-2: #1B2331;  --depth-3: #253043;  --depth-inset: #172030;
   }
 }`;
 document.getElementById("tokens").textContent = tokens;

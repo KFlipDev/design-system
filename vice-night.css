@@ -10,6 +10,9 @@
   --pink: #C2307A;  --pink-bright: #F06FAE;
   --sunset: linear-gradient(90deg, var(--teal-bright), var(--pink-bright));
   --code-bg: #15171D;  --code-fg: #E8EAEE;
+  /* Depth scale for nested boxes (diagrams, dashboards): cool slate.
+     Containers step darker with depth; --depth-3 cards sit on top. */
+  --depth-1: #E9EEF5;  --depth-2: #DCE3EE;  --depth-3: #FFFFFF;  --depth-inset: #F3F6FA;
   --f-mark: "Syncopate", "Eurostile", "Arial Black", sans-serif;
   --f-head: "Sora", "Segoe UI", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
@@ -22,6 +25,7 @@
     --muted: #9AA1AF;  --line: #262A35;
     --teal: #4FD6DE;  --pink: #FF85BF;
     --code-bg: #0B0D12;  color-scheme: dark;
+    --depth-1: #141A24;  --depth-2: #1B2331;  --depth-3: #253043;  --depth-inset: #172030;
   }
 }
 :root[data-theme="dark"] {
@@ -29,4 +33,5 @@
   --muted: #9AA1AF;  --line: #262A35;
   --teal: #4FD6DE;  --pink: #FF85BF;
   --code-bg: #0B0D12;  color-scheme: dark;
+  --depth-1: #141A24;  --depth-2: #1B2331;  --depth-3: #253043;  --depth-inset: #172030;
 }
