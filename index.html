@@ -25,6 +25,8 @@
   --code-fg: #E8EAEE;
   /* Depth scale (cool slate): containers step darker, cards on top */
   --depth-1: #E9EEF5; --depth-2: #DCE3EE; --depth-3: #FFFFFF; --depth-inset: #F3F6FA;
+  /* Category palette: marks for categories (VLANs, zones) only */
+  --cat-1: #2F65B0; --cat-2: #946000; --cat-3: #7350B3; --cat-4: #2F7D45; --cat-5: #B4512A; --cat-6: #566A80;
 
   --f-mark: "Syncopate", "Eurostile", "Arial Black", sans-serif;
   --f-head: "Sora", "Segoe UI", system-ui, sans-serif;
@@ -38,13 +40,15 @@
     --teal: #4FD6DE; --teal-bright: #2BC4CF; --pink: #FF85BF; --pink-bright: #F06FAE;
     --code-bg: #0B0D12; --code-fg: #E8EAEE; color-scheme: dark;
     --depth-1: #141A24; --depth-2: #1B2331; --depth-3: #253043; --depth-inset: #172030;
+    --cat-1: #7FA8E8; --cat-2: #E0B04A; --cat-3: #B39AF0; --cat-4: #7CC48C; --cat-5: #F0905F; --cat-6: #9AAEC2;
   }
 }
 :root[data-theme="dark"] {
   --bg: #101218; --surface: #171A22; --ink: #ECEEF2; --muted: #9AA1AF; --line: #262A35;
   --teal: #4FD6DE; --teal-bright: #2BC4CF; --pink: #FF85BF; --pink-bright: #F06FAE;
   --code-bg: #0B0D12; --code-fg: #E8EAEE; color-scheme: dark;
-    --depth-1: #141A24; --depth-2: #1B2331; --depth-3: #253043; --depth-inset: #172030;
+  --depth-1: #141A24; --depth-2: #1B2331; --depth-3: #253043; --depth-inset: #172030;
+  --cat-1: #7FA8E8; --cat-2: #E0B04A; --cat-3: #B39AF0; --cat-4: #7CC48C; --cat-5: #F0905F; --cat-6: #9AAEC2;
 }
 
 * { box-sizing: border-box; }
@@ -139,6 +143,17 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
 .scale div { display: grid; grid-template-columns: 34px 120px 1fr; gap: 10px; align-items: center; }
 .scale i { width: 34px; height: 22px; border-radius: 4px; border: 1px solid var(--line); }
 .scale code { font: 12px var(--f-mono); color: var(--muted); }
+/* category demo */
+.cats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 720px) { .cats { grid-template-columns: 1fr; } }
+.catlist { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.catlist li { background: var(--depth-3); border: 1px solid var(--line); border-left: 3px solid var(--c); border-radius: var(--r); padding: 8px 12px; display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; font-size: 14px; min-width: 0; }
+.catlist code { font: 12px var(--f-mono); color: var(--muted); }
+.catlist .vl { font: 500 12px var(--f-mono); color: var(--ink); }
+.catlist b { font: 600 14px var(--f-head); overflow-wrap: anywhere; }
+.cgroup { background: var(--depth-1); border: 1.5px solid var(--c); border-radius: 10px; padding: 10px 12px 12px; display: grid; gap: 8px; }
+.cgroup .lab { display: flex; justify-content: space-between; gap: 8px; font: 600 11px/1 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.ctag { font: 500 10.5px/1 var(--f-mono); letter-spacing: .04em; padding: 4px 7px; border-radius: 999px; border: 1px solid var(--c); color: var(--ink); background: var(--depth-3); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -230,6 +245,39 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
   </section>
 
   <section>
+    <header><h2>Category colours</h2><p>For as-built and network diagrams and dashboards where colour means a category: a VLAN, a zone, a tier. Six muted hues that stay clear of teal and pink. Each category keeps its colour everywhere it appears, so the eye can follow VLAN 20 from the network list to its containers.</p></header>
+    <div class="scale">
+      <div><i style="background:var(--cat-1)"></i><code>--cat-1</code><span>Blue · #2F65B0 / #7FA8E8</span></div>
+      <div><i style="background:var(--cat-2)"></i><code>--cat-2</code><span>Amber · #946000 / #E0B04A</span></div>
+      <div><i style="background:var(--cat-3)"></i><code>--cat-3</code><span>Violet · #7350B3 / #B39AF0</span></div>
+      <div><i style="background:var(--cat-4)"></i><code>--cat-4</code><span>Green · #2F7D45 / #7CC48C</span></div>
+      <div><i style="background:var(--cat-5)"></i><code>--cat-5</code><span>Orange · #B4512A / #F0905F</span></div>
+      <div><i style="background:var(--cat-6)"></i><code>--cat-6</code><span>Slate · #566A80 / #9AAEC2 (also "other")</span></div>
+    </div>
+    <div class="cats">
+      <ul class="catlist" aria-label="Example network list">
+        <li style="--c:var(--cat-1)"><span class="vl">VLAN 10</span><b>Management</b><code>10.10.10.0/24</code></li>
+        <li style="--c:var(--cat-2)"><span class="vl">VLAN 20</span><b>Servers</b><code>10.10.20.0/24</code></li>
+        <li style="--c:var(--cat-3)"><span class="vl">VLAN 30</span><b>Clients</b><code>10.10.30.0/24</code></li>
+        <li style="--c:var(--cat-4)"><span class="vl">VLAN 40</span><b>IoT</b><code>10.10.40.0/24</code></li>
+        <li style="--c:var(--cat-5)"><span class="vl">VLAN 50</span><b>Lab</b><code>10.10.50.0/24</code></li>
+      </ul>
+      <div class="cgroup" style="--c:var(--cat-2)"><p class="lab"><span>Servers</span><span class="ctag">VLAN 20</span></p>
+        <div class="d3"><p class="eyebrow">LXC</p><b>debian-flamenco-01</b><div class="di">10.10.20.31 · manager :8080</div></div>
+        <div class="d3"><p class="eyebrow">VM</p><b>ubuntu-gpu-01</b><div class="di">10.10.20.32 · flamenco-worker</div></div>
+      </div>
+    </div>
+    <ul class="rules">
+      <li>Use the colour as a 3px left bar, an outline or a small tag. The fill stays neutral (depth scale).</li>
+      <li>Always put the category's name next to its colour; colour never carries meaning on its own.</li>
+      <li>One hue per category, the same on every page. Six at most; group the rest under slate.</li>
+      <li>Labels stay <code>--ink</code> or <code>--muted</code>. Teal and pink keep their jobs: flow and links, the one focus.</li>
+      <li class="dont">No category colour as a box fill or for body text. Marks only: every hue clears 3:1 on all surfaces (lowest 3.9:1, on <code>--depth-2</code> in light).</li>
+      <li class="dont">Not on ordinary pages. Only diagrams and dashboards where colour = category.</li>
+    </ul>
+  </section>
+
+  <section>
     <header><h2>In use</h2><p>A sample home page built only from the tokens above.</p></header>
     <div class="mock">
       <div class="stripe"></div>
@@ -285,6 +333,12 @@ const SW = [
   ["Depth 2", "--depth-2", "#DCE3EE", "#1B2331", "Groups inside it"],
   ["Depth 3", "--depth-3", "#FFFFFF", "#253043", "Cards"],
   ["Depth inset", "--depth-inset", "#F3F6FA", "#172030", "Chips inside cards"],
+  ["Category 1", "--cat-1", "#2F65B0", "#7FA8E8", "Category marks: blue"],
+  ["Category 2", "--cat-2", "#946000", "#E0B04A", "Category marks: amber"],
+  ["Category 3", "--cat-3", "#7350B3", "#B39AF0", "Category marks: violet"],
+  ["Category 4", "--cat-4", "#2F7D45", "#7CC48C", "Category marks: green"],
+  ["Category 5", "--cat-5", "#B4512A", "#F0905F", "Category marks: orange"],
+  ["Category 6", "--cat-6", "#566A80", "#9AAEC2", "Category marks: slate"],
 ];
 const box = document.getElementById("swatches");
 SW.forEach(([name, tok, light, dark, role]) => {
@@ -302,6 +356,7 @@ const tokens = `:root {
   --pink: #C2307A;  --pink-bright: #F06FAE;
   --sunset: linear-gradient(90deg, var(--teal-bright), var(--pink-bright));
   --depth-1: #E9EEF5;  --depth-2: #DCE3EE;  --depth-3: #FFFFFF;  --depth-inset: #F3F6FA;
+  --cat-1: #2F65B0;  --cat-2: #946000;  --cat-3: #7350B3;  --cat-4: #2F7D45;  --cat-5: #B4512A;  --cat-6: #566A80;
   --f-mark: "Syncopate", sans-serif;
   --f-head: "Sora", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", system-ui, sans-serif;
@@ -313,6 +368,7 @@ const tokens = `:root {
     --muted: #9AA1AF;  --line: #262A35;
     --teal: #4FD6DE;  --pink: #FF85BF;
     --depth-1: #141A24;  --depth-2: #1B2331;  --depth-3: #253043;  --depth-inset: #172030;
+    --cat-1: #7FA8E8;  --cat-2: #E0B04A;  --cat-3: #B39AF0;  --cat-4: #7CC48C;  --cat-5: #F0905F;  --cat-6: #9AAEC2;
   }
 }`;
 document.getElementById("tokens").textContent = tokens;

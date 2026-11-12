@@ -13,6 +13,9 @@
   /* Depth scale for nested boxes (diagrams, dashboards): cool slate.
      Containers step darker with depth; --depth-3 cards sit on top. */
   --depth-1: #E9EEF5;  --depth-2: #DCE3EE;  --depth-3: #FFFFFF;  --depth-inset: #F3F6FA;
+  /* Category palette: only where colour = category (VLANs, zones, tiers) on diagrams and dashboards.
+     Marks only (bars, outlines, tags), always next to the category's name; never fills or body text. */
+  --cat-1: #2F65B0;  --cat-2: #946000;  --cat-3: #7350B3;  --cat-4: #2F7D45;  --cat-5: #B4512A;  --cat-6: #566A80;
   --f-mark: "Syncopate", "Eurostile", "Arial Black", sans-serif;
   --f-head: "Sora", "Segoe UI", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
@@ -26,6 +29,7 @@
     --teal: #4FD6DE;  --pink: #FF85BF;
     --code-bg: #0B0D12;  color-scheme: dark;
     --depth-1: #141A24;  --depth-2: #1B2331;  --depth-3: #253043;  --depth-inset: #172030;
+    --cat-1: #7FA8E8;  --cat-2: #E0B04A;  --cat-3: #B39AF0;  --cat-4: #7CC48C;  --cat-5: #F0905F;  --cat-6: #9AAEC2;
   }
 }
 :root[data-theme="dark"] {
@@ -34,4 +38,5 @@
   --teal: #4FD6DE;  --pink: #FF85BF;
   --code-bg: #0B0D12;  color-scheme: dark;
   --depth-1: #141A24;  --depth-2: #1B2331;  --depth-3: #253043;  --depth-inset: #172030;
+  --cat-1: #7FA8E8;  --cat-2: #E0B04A;  --cat-3: #B39AF0;  --cat-4: #7CC48C;  --cat-5: #F0905F;  --cat-6: #9AAEC2;
 }

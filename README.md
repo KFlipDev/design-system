@@ -22,6 +22,12 @@ The current theme. A neutral base with Miami Vice teal and pink as accents.
 | `--depth-2` | `#DCE3EE` | `#1B2331` | Groups inside it (layers, bands) |
 | `--depth-3` | `#FFFFFF` | `#253043` | Cards, at any depth |
 | `--depth-inset` | `#F3F6FA` | `#172030` | Chips and code inside a card |
+| `--cat-1` | `#2F65B0` | `#7FA8E8` | Category mark: blue |
+| `--cat-2` | `#946000` | `#E0B04A` | Category mark: amber |
+| `--cat-3` | `#7350B3` | `#B39AF0` | Category mark: violet |
+| `--cat-4` | `#2F7D45` | `#7CC48C` | Category mark: green |
+| `--cat-5` | `#B4512A` | `#F0905F` | Category mark: orange |
+| `--cat-6` | `#566A80` | `#9AAEC2` | Category mark: slate, also "other" |
 
 Type: Syncopate (wordmark and small caps labels only), Sora headings, IBM Plex Sans body, IBM Plex Mono code.
 
@@ -32,6 +38,7 @@ Type: Syncopate (wordmark and small caps labels only), Sora headings, IBM Plex S
 - The teal-to-pink gradient (`--sunset`) appears only as a 2–3px stripe or on one short headline phrase.
 - Primary buttons are ink. No gradient backgrounds, neon glows, or palm imagery.
 - Depth (cool slate): nested containers step one level darker per level (lighter in dark mode), never alternating; cards are always `--depth-3`. Labels on `--depth-1`/`--depth-2` use `--muted` or `--ink`, because teal and pink text drop below 4.5:1 there.
+- Category colours (`--cat-1`…`--cat-6`): only on diagrams and dashboards where colour = category (VLANs, zones, tiers). One hue per category, held constant across pages; used as a 3px bar, an outline or a small tag, never a fill or body text; the category's name always sits next to it. Six at most, the rest under slate. Every hue clears 3:1 on all surfaces (lowest 3.9:1, on `--depth-2` in light).
 
 ## One-page designs
 
@@ -42,7 +49,7 @@ New designs (architecture, pipelines, page layouts, tooling) start as a single a
 Pin to a release so later changes don't restyle a project unexpectedly:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.1.0/vice-night.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.2.0/vice-night.css">
 ```
 
 Dark mode follows the OS by default. Set `data-theme="light"` or `data-theme="dark"` on `<html>` to force one.
@@ -53,5 +60,6 @@ Semantic versioning. Token value changes are minor; renamed or removed tokens ar
 
 ## Changelog
 
+- **v1.2.0** (2026-11-12): add the category palette (`--cat-1` to `--cat-6`), six muted hues for colour-coded categories in as-built and network diagrams; spec section "Category colours".
 - **v1.1.0** (2026-10-19): add the depth scale (`--depth-1`, `--depth-2`, `--depth-3`, `--depth-inset`), cool slate, chosen from four options; spec section "Depth".
 - **v1.0.0**: first release: palette, type, components, rules.
