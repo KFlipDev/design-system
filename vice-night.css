@@ -1,21 +1,34 @@
-/* Vice Night: default color scheme for all projects.
+/* Vice Night v1.3.0: tokens. Default color scheme for all projects.
    Spec and live preview: https://kflipdev.github.io/design-system/
-   Source: https://github.com/KFlipDev/design-system */
+   Source: https://github.com/KFlipDev/design-system
+   Diagram and page parts are in vice-night-kit.css; line drawings in vice-night-symbols.js. */
 @import url("https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Sora:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
 
 :root {
-  --bg: #F6F7F8;  --surface: #FFFFFF;  --ink: #15171D;
-  --muted: #5C6270;  --line: #E2E4E9;
-  --teal: #00808C;  --teal-bright: #2BC4CF;   /* --teal is text-safe; -bright is fills only */
-  --pink: #C2307A;  --pink-bright: #F06FAE;
+  --bg: #F5F7FA;  --surface: #FFFFFF;  --ink: #15171D;
+  --muted: #5C6270;  --line: #D9E0EA;
+  --teal: #006F7A;  --teal-bright: #22D3EE;   /* --teal and --pink are text-safe; the -bright pair is for fills, edges and lines */
+  --pink: #C2307A;  --pink-bright: #FF4FA8;
+  --pink-tint: #FFE8F3;   /* fill behind a special part, with a --pink-bright border */
+  --on-bright: #15171D;   /* text on --teal-bright or --pink-bright fills, same in light and dark */
   --sunset: linear-gradient(90deg, var(--teal-bright), var(--pink-bright));
   --code-bg: #15171D;  --code-fg: #E8EAEE;
-  /* Depth scale for nested boxes (diagrams, dashboards): cool slate.
-     Containers step darker with depth; --depth-3 cards sit on top. */
   --depth-1: #E9EEF5;  --depth-2: #DCE3EE;  --depth-3: #FFFFFF;  --depth-inset: #F3F6FA;
-  /* Category palette: only where colour = category (VLANs, zones, tiers) on diagrams and dashboards.
-     Marks only (bars, outlines, tags), always next to the category's name; never fills or body text. */
-  --cat-1: #2F65B0;  --cat-2: #946000;  --cat-3: #7350B3;  --cat-4: #2F7D45;  --cat-5: #B4512A;  --cat-6: #566A80;
+  /* Category palette: aqua, violet, sunset orange, palm green, gold, orchid. Marks only, next to the category's name. */
+  --cat-1: #08879A;  --cat-2: #7B4BD6;  --cat-3: #C94E18;  --cat-4: #1B8557;  --cat-5: #987000;  --cat-6: #9B3FA6;
+  /* Status: text-safe mark + soft cell tint. Always with a word or icon, never color alone. */
+  --ok: #006F7A;  --ok-bg: #D6F6F8;        /* aqua */
+  --warn: #934600;  --warn-bg: #FFE6CC;    /* sunset orange */
+  --block: #B92438;  --block-bg: #FFE1E3;   /* coral, not pink: pink is kept for special parts */
+  /* Sequential ramp: low to high in cyan, the top step pink. Fills for cells and bars on --depth-3 cards;
+     --seq-on-n is the label color on step n. */
+  --seq-1: #D2F7FA;  --seq-2: #8FE9F0;  --seq-3: #3FD4E0;  --seq-4: #0FA9B8;  --seq-5: #FF4FA8;
+  --seq-on-1: #15171D;  --seq-on-2: #15171D;  --seq-on-3: #15171D;  --seq-on-4: #15171D;  --seq-on-5: #15171D;
+  /* Space scale; --gap is the one gap between sibling boxes. */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px;  --space-4: 20px;  --space-5: 32px;
+  --gap: var(--space-4);
+  /* Text sizes for diagrams and dense pages. */
+  --text-1: 10.5px;  --text-2: 12px;  --text-3: 13px;  --text-4: 15px;  --text-5: 18px;  --text-6: 34px;
   --f-mark: "Syncopate", "Eurostile", "Arial Black", sans-serif;
   --f-head: "Sora", "Segoe UI", system-ui, sans-serif;
   --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
@@ -24,19 +37,25 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #101218;  --surface: #171A22;  --ink: #ECEEF2;
-    --muted: #9AA1AF;  --line: #262A35;
-    --teal: #4FD6DE;  --pink: #FF85BF;
+    --bg: #0E1219;  --surface: #171A22;  --ink: #ECEEF2;
+    --muted: #9AA1AF;  --line: #2A3546;
+    --teal: #3DE0E8;  --pink: #FF6FB5;  --pink-tint: #3A1230;
     --code-bg: #0B0D12;  color-scheme: dark;
     --depth-1: #141A24;  --depth-2: #1B2331;  --depth-3: #253043;  --depth-inset: #172030;
-    --cat-1: #7FA8E8;  --cat-2: #E0B04A;  --cat-3: #B39AF0;  --cat-4: #7CC48C;  --cat-5: #F0905F;  --cat-6: #9AAEC2;
+    --cat-1: #3DD6E6;  --cat-2: #B79CFF;  --cat-3: #FF9552;  --cat-4: #6FE0A0;  --cat-5: #FFD45C;  --cat-6: #E08AF0;
+    --ok: #3DE0E8;  --ok-bg: #0C3338;  --warn: #FFB45C;  --warn-bg: #3D270C;  --block: #FF7A85;  --block-bg: #451A20;
+    --seq-1: #134E55;  --seq-2: #17767F;  --seq-3: #1FA3AE;  --seq-4: #2CCBD6;  --seq-5: #FF4FA8;
+    --seq-on-1: #ECEEF2;  --seq-on-2: #ECEEF2;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #101218;  --surface: #171A22;  --ink: #ECEEF2;
-  --muted: #9AA1AF;  --line: #262A35;
-  --teal: #4FD6DE;  --pink: #FF85BF;
+  --bg: #0E1219;  --surface: #171A22;  --ink: #ECEEF2;
+  --muted: #9AA1AF;  --line: #2A3546;
+  --teal: #3DE0E8;  --pink: #FF6FB5;  --pink-tint: #3A1230;
   --code-bg: #0B0D12;  color-scheme: dark;
   --depth-1: #141A24;  --depth-2: #1B2331;  --depth-3: #253043;  --depth-inset: #172030;
-  --cat-1: #7FA8E8;  --cat-2: #E0B04A;  --cat-3: #B39AF0;  --cat-4: #7CC48C;  --cat-5: #F0905F;  --cat-6: #9AAEC2;
+  --cat-1: #3DD6E6;  --cat-2: #B79CFF;  --cat-3: #FF9552;  --cat-4: #6FE0A0;  --cat-5: #FFD45C;  --cat-6: #E08AF0;
+  --ok: #3DE0E8;  --ok-bg: #0C3338;  --warn: #FFB45C;  --warn-bg: #3D270C;  --block: #FF7A85;  --block-bg: #451A20;
+  --seq-1: #134E55;  --seq-2: #17767F;  --seq-3: #1FA3AE;  --seq-4: #2CCBD6;  --seq-5: #FF4FA8;
+    --seq-on-1: #ECEEF2;  --seq-on-2: #ECEEF2;
 }

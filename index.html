@@ -3,58 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vice Night Palette</title>
+<title>Vice Night</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Sora:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="vice-night.css">
+<link rel="stylesheet" href="vice-night-kit.css">
+<script src="vice-night-symbols.js"></script>
 <style>
-/* Layout: one narrow column of spec sections, then a live mini-site mockup that uses only the tokens. */
-:root {
-  /* Neutrals carry ~90% of the page */
-  --bg: #F6F7F8;          /* paper, faint cool bias */
-  --surface: #FFFFFF;
-  --ink: #15171D;         /* text, near-black with navy bias */
-  --muted: #5C6270;
-  --line: #E2E4E9;
-  /* Vice accents: teal leads, pink is the seasoning */
-  --teal: #00808C;        /* text-safe on light (4.6:1) */
-  --teal-bright: #2BC4CF; /* fills, stripes, never small text on light */
-  --pink: #C2307A;        /* text-safe on light */
-  --pink-bright: #F06FAE;
-  --sunset: linear-gradient(90deg, var(--teal-bright), var(--pink-bright));
-  --code-bg: #15171D;
-  --code-fg: #E8EAEE;
-  /* Depth scale (cool slate): containers step darker, cards on top */
-  --depth-1: #E9EEF5; --depth-2: #DCE3EE; --depth-3: #FFFFFF; --depth-inset: #F3F6FA;
-  /* Category palette: marks for categories (VLANs, zones) only */
-  --cat-1: #2F65B0; --cat-2: #946000; --cat-3: #7350B3; --cat-4: #2F7D45; --cat-5: #B4512A; --cat-6: #566A80;
-
-  --f-mark: "Syncopate", "Eurostile", "Arial Black", sans-serif;
-  --f-head: "Sora", "Segoe UI", system-ui, sans-serif;
-  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-  --r: 6px;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #101218; --surface: #171A22; --ink: #ECEEF2; --muted: #9AA1AF; --line: #262A35;
-    --teal: #4FD6DE; --teal-bright: #2BC4CF; --pink: #FF85BF; --pink-bright: #F06FAE;
-    --code-bg: #0B0D12; --code-fg: #E8EAEE; color-scheme: dark;
-    --depth-1: #141A24; --depth-2: #1B2331; --depth-3: #253043; --depth-inset: #172030;
-    --cat-1: #7FA8E8; --cat-2: #E0B04A; --cat-3: #B39AF0; --cat-4: #7CC48C; --cat-5: #F0905F; --cat-6: #9AAEC2;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #101218; --surface: #171A22; --ink: #ECEEF2; --muted: #9AA1AF; --line: #262A35;
-  --teal: #4FD6DE; --teal-bright: #2BC4CF; --pink: #FF85BF; --pink-bright: #F06FAE;
-  --code-bg: #0B0D12; --code-fg: #E8EAEE; color-scheme: dark;
-  --depth-1: #141A24; --depth-2: #1B2331; --depth-3: #253043; --depth-inset: #172030;
-  --cat-1: #7FA8E8; --cat-2: #E0B04A; --cat-3: #B39AF0; --cat-4: #7CC48C; --cat-5: #F0905F; --cat-6: #9AAEC2;
-}
-
+/* Layout: one narrow column of spec sections, then a live mini-site mockup that uses only the tokens.
+   Tokens, kit parts and symbols come from the three release files above; this block is only the spec page's own layout. */
 * { box-sizing: border-box; }
 body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--f-body); margin: 0; }
 .wrap { max-width: 920px; margin: 0 auto; padding-inline: 20px; padding-block: 0 72px; }
-.stripe { height: 3px; background: var(--sunset); }
+.stripe { height: 5px; background: var(--sunset); }
 header.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 28px; flex-wrap: wrap; }
 .mark { font: 700 15px/1 var(--f-mark); letter-spacing: .18em; text-transform: uppercase; }
 .mark span { color: var(--pink); }
@@ -130,14 +91,14 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
 /* depth demo */
 .depth { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 @media (max-width: 720px) { .depth { grid-template-columns: 1fr; } }
-.d1 { background: var(--depth-1); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; }
+.d1 { background: var(--depth-1); border: 1px solid var(--line); border-top: 3px solid var(--teal-bright); border-radius: 10px; padding: 14px; display: grid; gap: 10px; }
 .d1 > .lab, .d2 > .lab { font: 600 11px/1 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
 .d2 { background: var(--depth-2); border-radius: 8px; padding: 10px 12px 12px; display: grid; gap: 8px; }
 .d2 .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
 .d3 { background: var(--depth-3); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; display: grid; gap: 6px; min-width: 0; }
 .d3 .eyebrow { margin: 0; font-size: 9.5px; }
 .d3 b { font: 600 14px var(--f-head); overflow-wrap: anywhere; }
-.d3.hot { border: 2px solid var(--pink); }
+.d3.hot { border: 2.5px solid var(--pink-bright); background: var(--pink-tint); }
 .di { background: var(--depth-inset); border: 1px solid var(--line); border-radius: 4px; padding: 4px 8px; font: 12px var(--f-mono); color: var(--muted); overflow-wrap: anywhere; }
 .scale { display: grid; gap: 6px; font-size: 14px; }
 .scale div { display: grid; grid-template-columns: 34px 120px 1fr; gap: 10px; align-items: center; }
@@ -154,6 +115,23 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
 .cgroup { background: var(--depth-1); border: 1.5px solid var(--c); border-radius: 10px; padding: 10px 12px 12px; display: grid; gap: 8px; }
 .cgroup .lab { display: flex; justify-content: space-between; gap: 8px; font: 600 11px/1 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0; }
 .ctag { font: 500 10.5px/1 var(--f-mono); letter-spacing: .04em; padding: 4px 7px; border-radius: 999px; border: 1px solid var(--c); color: var(--ink); background: var(--depth-3); }
+/* kit, symbols, treatments */
+.kit { display: flex; flex-wrap: wrap; gap: 22px 30px; align-items: flex-end; }
+.kit figure { margin: 0; display: grid; gap: 8px; justify-items: start; }
+.kit figcaption { font: 12px/1.4 var(--f-mono); color: var(--muted); }
+.kit .row { display: flex; gap: 8px; align-items: center; }
+.kit .vn-card, .kit .vn-lane { display: flex; gap: 8px; align-items: center; font: 600 13px var(--f-head); }
+.kit .sym { display: block; height: auto; }
+.sheets { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; }
+.sheets figure { margin: 0; display: grid; gap: 4px; }
+.sheets svg { width: 100%; height: auto; display: block; margin-bottom: 4px; }
+.sheets b { font: 600 15px var(--f-head); }
+.sheets code { font: 12px var(--f-mono); color: var(--muted); }
+.sheets small { font-size: 13px; color: var(--muted); line-height: 1.4; }
+.mini { fill: var(--bg); stroke: var(--line); stroke-width: 1.5; } .thin { stroke-width: 1; } .minit { font: 700 15px var(--f-head); fill: var(--ink); }
+.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; max-width: 460px; }
+.week span { text-align: center; font: 500 12px/1 var(--f-mono); padding: 8px 0; border-radius: 4px; }
+.week small { text-align: center; font: 12px var(--f-mono); color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -166,12 +144,12 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
     <button class="ghost" id="themeBtn" type="button">Switch to dark</button>
   </header>
 
-  <p class="eyebrow">Site color system</p>
+  <p class="eyebrow">Design system · v1.3.0</p>
   <h1>Vice Night</h1>
-  <p class="lede">A quiet, neutral base with Miami Vice teal and pink used as accents. Teal does the working jobs (links, focus, status). Pink appears in a few small places. The two meet in a thin teal-to-pink stripe that recalls the Heat Vice jersey trim.</p>
+  <p class="lede">A quiet, neutral base with Miami Vice cyan and pink as accents. Cyan does the working jobs: links, steps, flow, the edge of a zone. Pink marks what is special. The two meet in a thin cyan-to-pink stripe that recalls the Heat Vice jersey trim.</p>
 
   <section>
-    <header><h2>Palette</h2><p>Each accent has a text-safe shade and a bright shade. Use the bright shades only for fills, stripes, and dots, never for small text on the light background.</p></header>
+    <header><h2>Palette</h2><p>Each accent has a text-safe shade and a bright shade. The bright pair is for fills, edges and lines, never small text on the light background; text on a bright fill is ink.</p></header>
     <div class="swatches" id="swatches"></div>
   </section>
 
@@ -237,22 +215,23 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
       <ul class="rules" style="grid-template-columns:1fr;align-content:start">
         <li>One step per nesting level. Three container levels at most; past that, split the diagram.</li>
         <li>Cards are always <code>--depth-3</code>, at any depth, so content reads as one layer.</li>
-        <li>Labels on <code>--depth-1</code> and <code>--depth-2</code> use <code>--muted</code> or <code>--ink</code>. Teal and pink text stays on cards.</li>
-        <li class="dont">No teal or pink text on depth fills in light mode: it falls to about 3.6–4.0:1, under the 4.5:1 minimum.</li>
-        <li class="dont">Don't tint the depth scale with teal. Teal means links and status.</li>
+        <li>Labels on <code>--depth-1</code> and <code>--depth-2</code> use <code>--muted</code>, <code>--ink</code> or <code>--teal</code> (4.58:1 or better). Pink text stays on cards.</li>
+        <li>A zone gets a cyan top edge. The card that is special gets a pink border on <code>--pink-tint</code>.</li>
+        <li class="dont">No pink text on depth fills in light mode: it falls to 4.07:1 on <code>--depth-2</code>, under the 4.5:1 minimum.</li>
+        <li class="dont">Don't tint the depth scale with teal. Teal means links and flow.</li>
       </ul>
     </div>
   </section>
 
   <section>
-    <header><h2>Category colours</h2><p>For as-built and network diagrams and dashboards where colour means a category: a VLAN, a zone, a tier. Six muted hues that stay clear of teal and pink. Each category keeps its colour everywhere it appears, so the eye can follow VLAN 20 from the network list to its containers.</p></header>
+    <header><h2>Category colors</h2><p>For as-built and network diagrams and dashboards where color means a category: a VLAN, a zone, a tier. Six Miami hues: aqua, violet, sunset orange, palm green, gold and orchid. Each category keeps its color everywhere it appears, so the eye can follow VLAN 20 from the network list to its containers.</p></header>
     <div class="scale">
-      <div><i style="background:var(--cat-1)"></i><code>--cat-1</code><span>Blue · #2F65B0 / #7FA8E8</span></div>
-      <div><i style="background:var(--cat-2)"></i><code>--cat-2</code><span>Amber · #946000 / #E0B04A</span></div>
-      <div><i style="background:var(--cat-3)"></i><code>--cat-3</code><span>Violet · #7350B3 / #B39AF0</span></div>
-      <div><i style="background:var(--cat-4)"></i><code>--cat-4</code><span>Green · #2F7D45 / #7CC48C</span></div>
-      <div><i style="background:var(--cat-5)"></i><code>--cat-5</code><span>Orange · #B4512A / #F0905F</span></div>
-      <div><i style="background:var(--cat-6)"></i><code>--cat-6</code><span>Slate · #566A80 / #9AAEC2 (also "other")</span></div>
+      <div><i style="background:var(--cat-1)"></i><code>--cat-1</code><span>Aqua · #08879A / #3DD6E6</span></div>
+      <div><i style="background:var(--cat-2)"></i><code>--cat-2</code><span>Violet · #7B4BD6 / #B79CFF</span></div>
+      <div><i style="background:var(--cat-3)"></i><code>--cat-3</code><span>Sunset orange · #C94E18 / #FF9552</span></div>
+      <div><i style="background:var(--cat-4)"></i><code>--cat-4</code><span>Palm green · #1B8557 / #6FE0A0</span></div>
+      <div><i style="background:var(--cat-5)"></i><code>--cat-5</code><span>Gold · #987000 / #FFD45C</span></div>
+      <div><i style="background:var(--cat-6)"></i><code>--cat-6</code><span>Orchid · #9B3FA6 / #E08AF0</span></div>
     </div>
     <div class="cats">
       <ul class="catlist" aria-label="Example network list">
@@ -268,13 +247,118 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
       </div>
     </div>
     <ul class="rules">
-      <li>Use the colour as a 3px left bar, an outline or a small tag. The fill stays neutral (depth scale).</li>
-      <li>Always put the category's name next to its colour; colour never carries meaning on its own.</li>
-      <li>One hue per category, the same on every page. Six at most; group the rest under slate.</li>
-      <li>Labels stay <code>--ink</code> or <code>--muted</code>. Teal and pink keep their jobs: flow and links, the one focus.</li>
-      <li class="dont">No category colour as a box fill or for body text. Marks only: every hue clears 3:1 on all surfaces (lowest 3.9:1, on <code>--depth-2</code> in light).</li>
-      <li class="dont">Not on ordinary pages. Only diagrams and dashboards where colour = category.</li>
+      <li>Use the color as a 3px left bar, an outline or a small tag. The fill stays neutral (depth scale).</li>
+      <li>Always put the category's name next to its color; color never carries meaning on its own.</li>
+      <li>One hue per category, the same on every page. Six at most; past that, group categories.</li>
+      <li>Labels stay <code>--ink</code> or <code>--muted</code>. Cyan and pink keep their jobs: flow and links, the special parts.</li>
+      <li class="dont">No category color as a box fill or for body text. Marks only: every hue clears 3:1 on all surfaces (lowest 3.29:1, aqua on <code>--depth-2</code> in light).</li>
+      <li class="dont">Not on ordinary pages. Only diagrams and dashboards where color = category.</li>
     </ul>
+  </section>
+
+  <section>
+    <header><h2>Status</h2><p>Three states for cells, chips and marks on dashboards and matrices, in Miami hues: aqua, sunset orange and coral. Each has a text-safe mark and a soft tint.</p></header>
+    <div class="scale">
+      <div><i style="background:var(--ok-bg)"></i><code>--ok</code><span><span class="vn-status vn-ok">Allowed</span> · #006F7A on #D6F6F8 / #3DE0E8 on #0C3338</span></div>
+      <div><i style="background:var(--warn-bg)"></i><code>--warn</code><span><span class="vn-status vn-warn">Warn</span> · #934600 on #FFE6CC / #FFB45C on #3D270C</span></div>
+      <div><i style="background:var(--block-bg)"></i><code>--block</code><span><span class="vn-status vn-block">Blocked</span> · #B92438 on #FFE1E3 / #FF7A85 on #451A20</span></div>
+    </div>
+    <ul class="rules">
+      <li>Always with a word or an icon; color never carries the state on its own.</li>
+      <li>Status is a text mark or a tinted cell. Category colors are bars, outlines and tags, so the two never look alike.</li>
+      <li class="dont">"Blocked" is coral, not pink. Pink is kept for the special parts of a page.</li>
+    </ul>
+  </section>
+
+  <section>
+    <header><h2>Sequential ramp</h2><p>Five steps from low to high for heat cells and bars: cyan for steps 1 to 4, pink for the top step. The label color for each step is a token too, so text on a cell stays readable in light and dark.</p></header>
+    <div class="week" aria-label="Nightly backup size in GB, one week">
+      <span class="vn-seq-1">12 GB</span>
+      <span class="vn-seq-1">14 GB</span>
+      <span class="vn-seq-3">31 GB</span>
+      <span class="vn-seq-1">13 GB</span>
+      <span class="vn-seq-2">18 GB</span>
+      <span class="vn-seq-5">46 GB</span>
+      <span class="vn-seq-2">22 GB</span>
+      <small>Mon</small>
+      <small>Tue</small>
+      <small>Wed</small>
+      <small>Thu</small>
+      <small>Fri</small>
+      <small>Sat</small>
+      <small>Sun</small>
+    </div>
+    <ul class="rules">
+      <li><code>--seq-1</code> to <code>--seq-5</code> for the fill, <code>--seq-on-1</code> to <code>--seq-on-5</code> for the label on it (classes <code>vn-seq-1</code>…<code>5</code> set both).</li>
+      <li>The value is always printed. Color is the second cue, and pink on the top step means "the highest".</li>
+    </ul>
+  </section>
+
+  <section>
+    <header><h2>Space and text sizes</h2><p>One space scale and one set of text sizes for diagrams and dense pages. The gap between sibling boxes, and between a legend and its diagram, is always <code>--gap</code>.</p></header>
+    <div class="scale">
+      <div><i style="background:var(--ink);width:4px;border:0;border-radius:0"></i><code>--space-1</code><span>4px</span></div>
+      <div><i style="background:var(--ink);width:8px;border:0;border-radius:0"></i><code>--space-2</code><span>8px</span></div>
+      <div><i style="background:var(--ink);width:12px;border:0;border-radius:0"></i><code>--space-3</code><span>12px</span></div>
+      <div><i style="background:var(--ink);width:20px;border:0;border-radius:0"></i><code>--space-4</code><span>20px, also <code>--gap</code></span></div>
+      <div><i style="background:var(--ink);width:32px;border:0;border-radius:0"></i><code>--space-5</code><span>32px</span></div>
+    </div>
+    <div class="type">
+      <div class="row"><span>--text-1 · 10.5px</span><div class="vn-eyebrow">Stage 2 · Sign-ins</div></div>
+      <div class="row"><span>--text-2 · 12px</span><div class="vn-legend">solid = built · dashed = planned</div></div>
+      <div class="row"><span>--text-3 · 13px</span><div style="font: 400 var(--text-3)/1.5 var(--f-body)">Flamenco manager runs in an LXC next to the GPU VM.</div></div>
+      <div class="row"><span>--text-4 · 15px</span><div class="vn-h">GPU VM</div></div>
+      <div class="row"><span>--text-5 · 18px</span><div class="vn-h2">How it connects</div></div>
+      <div class="row"><span>--text-6 · 34px</span><div class="vn-title">Z840 GPU platform</div></div>
+    </div>
+  </section>
+
+  <section>
+    <header><h2>Kit parts</h2><p><code>vice-night-kit.css</code> holds the parts every diagram page needs, as <code>vn-</code> classes. Each works on an HTML element and inside an SVG.</p></header>
+    <div class="kit">
+      <figure><div class="row"><span class="vn-badge">1</span><span class="vn-badge">2</span><span class="vn-badge vn-special">3</span></div><figcaption>vn-badge · vn-special</figcaption></figure>
+      <figure><div class="vn-zone vn-tight"><div class="vn-lane"><span class="vn-card">Flamenco</span><span class="vn-card vn-focus">GPU VM</span></div></div><figcaption>vn-zone · vn-lane · vn-card · vn-focus</figcaption></figure>
+      <figure><span class="vn-stamp">Not built yet</span><figcaption>vn-stamp</figcaption></figure>
+      <figure><svg width="110" height="22" viewBox="0 0 110 22" role="img" aria-label="flow arrow"><path class="vn-flow" d="M2 11H96" marker-end="url(#vn-arrowhead)"/></svg><figcaption>vn-flow</figcaption></figure>
+      <figure><a class="vn-link" href="#">Open runbook</a><figcaption>vn-link</figcaption></figure>
+      <figure><div class="row"><span class="vn-cat-bar" style="--cat: var(--cat-1)">mgmt</span><span class="vn-cat-tag" style="--cat: var(--cat-2)">servers</span></div><figcaption>vn-cat-bar · vn-cat-tag</figcaption></figure>
+      <figure><div class="row"><span class="vn-status vn-ok">Allowed</span><span class="vn-status vn-warn">Warn</span><span class="vn-status vn-block">Blocked</span></div><figcaption>vn-status</figcaption></figure>
+      <figure><div class="row" style="gap:22px"><div class="vn-stat"><b>28</b><span>pages</span></div><div class="vn-stat"><b class="vn-special">46 GB</b><span>Saturday peak</span></div></div><figcaption>vn-stat · vn-special</figcaption></figure>
+      <figure><span class="vn-eyebrow vn-tick">Homelab design</span><figcaption>vn-eyebrow · vn-tick</figcaption></figure>
+      <figure><span class="vn-h2">Z840 <span class="vn-grad">GPU</span> platform</span><figcaption>vn-grad (prints solid teal)</figcaption></figure>
+      <figure><p class="vn-titleblock"><b>ONE-PAGE DESIGN</b><br>v1.0 agreed · 2026-11-18<br>page 1 of 3 · owner: Kevin</p><figcaption>vn-titleblock</figcaption></figure>
+      <figure><p class="vn-legend">solid = built · dashed = planned</p><figcaption>vn-legend</figcaption></figure>
+    </div>
+    <ul class="rules">
+      <li>Cyan badges and flow lines carry the main path; the special step is pink.</li>
+      <li>The kit also sets the print rules: one landscape sheet (<code>vn-letter</code> or <code>vn-tabloid</code> on body), light on paper.</li>
+    </ul>
+  </section>
+
+  <section>
+    <header><h2>Symbols</h2><p><code>vice-night-symbols.js</code> adds eight line drawings to a page, so a diagram can draw its subject from shared parts. A symbol is a blank: the page puts real text on top of it. Symbols follow light, dark and print.</p></header>
+    <div class="kit">
+      <figure><svg class="sym" viewBox="0 0 120 84" width="76" role="img" aria-label="laptop"><use href="#vn-laptop"/></svg><figcaption>#vn-laptop</figcaption></figure>
+      <figure><svg class="sym" viewBox="0 0 120 34" width="76" role="img" aria-label="server"><use href="#vn-server"/></svg><figcaption>#vn-server</figcaption></figure>
+      <figure><svg class="sym" viewBox="0 0 80 124" width="38" role="img" aria-label="rack"><use href="#vn-rack"/></svg><figcaption>#vn-rack</figcaption></figure>
+      <figure><svg class="sym" viewBox="0 0 48 84" width="30" role="img" aria-label="phone"><use href="#vn-phone"/></svg><figcaption>#vn-phone</figcaption></figure>
+      <figure><svg class="sym" viewBox="0 0 48 56" width="40" role="img" aria-label="user"><use href="#vn-user"/></svg><figcaption>#vn-user</figcaption></figure>
+      <figure><svg class="sym" viewBox="0 0 40 50" width="34" role="img" aria-label="lock"><use href="#vn-lock"/></svg><figcaption>#vn-lock</figcaption></figure>
+      <figure><svg class="sym" viewBox="0 0 76 46" width="64" role="img" aria-label="ticket"><use href="#vn-ticket"/></svg><figcaption>#vn-ticket</figcaption></figure>
+      <figure><svg class="sym" viewBox="0 0 100 64" width="70" role="img" aria-label="cloud"><use href="#vn-cloud"/></svg><figcaption>#vn-cloud</figcaption></figure>
+    </div>
+<pre>&lt;svg viewBox=<span class="s">"0 0 120 84"</span>&gt;&lt;use href=<span class="s">"#vn-laptop"</span>/&gt;&lt;/svg&gt;</pre>
+  </section>
+
+  <section>
+    <header><h2>Page treatments</h2><p>A treatment is the look of a whole page: its frame, where the title sits, and the drawing style. Pages in a set take different ones, so they are easy to tell apart. Set it with <code>data-sheet</code> on body.</p></header>
+    <div class="sheets">
+      <figure><svg viewBox="0 0 84 56" role="img" aria-label="Slab thumbnail"><rect class="mini" width="84" height="56" rx="2"/><rect class="vn-zone" x="7" y="14" width="70" height="35" rx="2"/><rect class="vn-card" x="12" y="20" width="18" height="23" rx="1.5"/><rect class="vn-card" x="33" y="20" width="18" height="23" rx="1.5"/><rect class="vn-card" x="54" y="20" width="18" height="23" rx="1.5"/><path class="vn-zone-edge thin" style="stroke-width:1.5" d="M8 14.5h68"/><path class="vn-rule" d="M7 8h26"/></svg><b>Slab</b><code>default, no attribute</code><small>A blue-grey panel holding white cards. For maps and lanes.</small></figure>
+      <figure><svg viewBox="0 0 84 56" role="img" aria-label="Blueprint thumbnail"><rect class="mini" width="84" height="56" rx="2"/><rect class="vn-rule" x="4" y="4" width="76" height="48"/><path class="vn-rule thin" d="M4 30h76M42 4v26M54 42h26M54 30v22"/></svg><b>Blueprint</b><code>data-sheet="blueprint"</code><small>A ruled sheet, numbered figures, title block bottom right. For one device or service from several angles.</small></figure>
+      <figure><svg viewBox="0 0 84 56" role="img" aria-label="Poster thumbnail"><rect class="mini" width="84" height="56" rx="2"/><use href="#vn-laptop" x="34" y="14" width="44" height="30.8"/><text class="minit" x="7" y="24">Aa</text><path class="vn-rule" d="M7 46h20"/></svg><b>Poster</b><code>data-sheet="poster"</code><small>No frame or boxes, one big drawing, a large title. For one idea or an overview.</small></figure>
+      <figure><svg viewBox="0 0 84 56" role="img" aria-label="Ledger thumbnail"><rect class="mini" width="84" height="56" rx="2"/><path class="vn-rule" d="M7 10h70M7 32h70"/><path class="vn-hair" style="stroke: var(--muted); stroke-width: .75" d="M7 17h70M7 24h70M7 39h70M7 46h70"/></svg><b>Ledger</b><code>data-sheet="ledger"</code><small>Ruled groups and rows instead of cards. For reference sheets and standards.</small></figure>
+      <figure><svg viewBox="0 0 84 56" role="img" aria-label="As-built thumbnail"><rect class="mini" width="84" height="56" rx="2"/><rect class="vn-card thin" x="7" y="7" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-1)" x="7" y="7" width="3" height="11"/><rect class="vn-card thin" x="32" y="7" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-1)" x="32" y="7" width="3" height="11"/><rect class="vn-card thin" x="57" y="7" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-1)" x="57" y="7" width="3" height="11"/><rect class="vn-card thin" x="7" y="23" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-3)" x="7" y="23" width="3" height="11"/><rect class="vn-card thin" x="32" y="23" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-3)" x="32" y="23" width="3" height="11"/><rect class="vn-card thin" x="57" y="23" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-3)" x="57" y="23" width="3" height="11"/><rect class="vn-card thin" x="7" y="39" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-4)" x="7" y="39" width="3" height="11"/><rect class="vn-card thin" x="32" y="39" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-4)" x="32" y="39" width="3" height="11"/><rect class="vn-card thin" x="57" y="39" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-4)" x="57" y="39" width="3" height="11"/></svg><b>As-built</b><code>data-sheet="asbuilt"</code><small>A dense current-state map with category colors as bars and tags. For a system as it runs today.</small></figure>
+    </div>
   </section>
 
   <section>
@@ -303,42 +387,43 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
   <section>
     <header><h2>Rules</h2></header>
     <ul class="rules">
-      <li>Teal for links, focus rings, status dots, active states.</li>
-      <li>Pink for one highlight per screen: a "new" tag, the active nav underline, the wordmark dot.</li>
-      <li>The gradient appears only as a 2–3px stripe or on one short headline phrase.</li>
+      <li>Cyan and teal for links, focus rings, step badges, flow lines, zone edges, active states.</li>
+      <li>Pink for the special parts of a page, used sparingly: the card that matters, the special step, a "new" tag, the wordmark dot.</li>
+      <li>The gradient appears only as the top stripe or on one title word. On paper that word prints solid teal.</li>
       <li>Big surfaces stay neutral. Buttons stay ink.</li>
       <li class="dont">No full gradient backgrounds, neon glows, or palm-tree imagery.</li>
-      <li class="dont">No pink body text and no bright teal text on the light background.</li>
+      <li class="dont">No pink body text, and no bright cyan or bright pink text on the light background. Text on a bright fill is ink.</li>
     </ul>
   </section>
 
   <section>
-    <header><h2>Tokens</h2><p>Drop this into the site's stylesheet.</p></header>
-    <div class="comp"><button class="ghost" id="copyTokens" type="button">Copy CSS tokens</button></div>
+    <header><h2>Use</h2><p>Load the files pinned to a release. The first line is enough for the tokens alone; a page that cannot reach a CDN keeps a copy of the three files next to it. Every token and its value: <a class="vn-link" href="vice-night.css">vice-night.css</a>.</p></header>
+    <div class="comp"><button class="ghost" id="copyTokens" type="button">Copy the three lines</button></div>
 <pre id="tokens"></pre>
   </section>
 </div>
 
 <script>
 const SW = [
-  ["Paper", "--bg", "#F6F7F8", "#101218", "Page background"],
+  ["Paper", "--bg", "#F5F7FA", "#0E1219", "Page background"],
   ["Ink", "--ink", "#15171D", "#ECEEF2", "Text, primary buttons"],
   ["Muted", "--muted", "#5C6270", "#9AA1AF", "Secondary text"],
-  ["Line", "--line", "#E2E4E9", "#262A35", "Borders, dividers"],
-  ["Vice Teal", "--teal", "#00808C", "#4FD6DE", "Links, focus, labels"],
-  ["Teal Bright", "--teal-bright", "#2BC4CF", "#2BC4CF", "Fills, stripe, status"],
-  ["Vice Pink", "--pink", "#C2307A", "#FF85BF", "One highlight per screen"],
-  ["Pink Bright", "--pink-bright", "#F06FAE", "#F06FAE", "Stripe end, underline"],
+  ["Line", "--line", "#D9E0EA", "#2A3546", "Borders, dividers"],
+  ["Vice Teal", "--teal", "#006F7A", "#3DE0E8", "Text-safe: links, labels"],
+  ["Cyan", "--teal-bright", "#22D3EE", "#22D3EE", "Fills, edges, lines"],
+  ["Vice Pink", "--pink", "#C2307A", "#FF6FB5", "Text-safe: a special label"],
+  ["Hot Pink", "--pink-bright", "#FF4FA8", "#FF4FA8", "Special parts: fills, borders"],
+  ["Pink tint", "--pink-tint", "#FFE8F3", "#3A1230", "Fill behind a special part"],
   ["Depth 1", "--depth-1", "#E9EEF5", "#141A24", "Outer container"],
   ["Depth 2", "--depth-2", "#DCE3EE", "#1B2331", "Groups inside it"],
   ["Depth 3", "--depth-3", "#FFFFFF", "#253043", "Cards"],
   ["Depth inset", "--depth-inset", "#F3F6FA", "#172030", "Chips inside cards"],
-  ["Category 1", "--cat-1", "#2F65B0", "#7FA8E8", "Category marks: blue"],
-  ["Category 2", "--cat-2", "#946000", "#E0B04A", "Category marks: amber"],
-  ["Category 3", "--cat-3", "#7350B3", "#B39AF0", "Category marks: violet"],
-  ["Category 4", "--cat-4", "#2F7D45", "#7CC48C", "Category marks: green"],
-  ["Category 5", "--cat-5", "#B4512A", "#F0905F", "Category marks: orange"],
-  ["Category 6", "--cat-6", "#566A80", "#9AAEC2", "Category marks: slate"],
+  ["Category 1", "--cat-1", "#08879A", "#3DD6E6", "Category marks: aqua"],
+  ["Category 2", "--cat-2", "#7B4BD6", "#B79CFF", "Category marks: violet"],
+  ["Category 3", "--cat-3", "#C94E18", "#FF9552", "Category marks: sunset orange"],
+  ["Category 4", "--cat-4", "#1B8557", "#6FE0A0", "Category marks: palm green"],
+  ["Category 5", "--cat-5", "#987000", "#FFD45C", "Category marks: gold"],
+  ["Category 6", "--cat-6", "#9B3FA6", "#E08AF0", "Category marks: orchid"],
 ];
 const box = document.getElementById("swatches");
 SW.forEach(([name, tok, light, dark, role]) => {
@@ -349,28 +434,9 @@ SW.forEach(([name, tok, light, dark, role]) => {
   box.appendChild(d);
 });
 
-const tokens = `:root {
-  --bg: #F6F7F8;  --surface: #FFFFFF;  --ink: #15171D;
-  --muted: #5C6270;  --line: #E2E4E9;
-  --teal: #00808C;  --teal-bright: #2BC4CF;
-  --pink: #C2307A;  --pink-bright: #F06FAE;
-  --sunset: linear-gradient(90deg, var(--teal-bright), var(--pink-bright));
-  --depth-1: #E9EEF5;  --depth-2: #DCE3EE;  --depth-3: #FFFFFF;  --depth-inset: #F3F6FA;
-  --cat-1: #2F65B0;  --cat-2: #946000;  --cat-3: #7350B3;  --cat-4: #2F7D45;  --cat-5: #B4512A;  --cat-6: #566A80;
-  --f-mark: "Syncopate", sans-serif;
-  --f-head: "Sora", system-ui, sans-serif;
-  --f-body: "IBM Plex Sans", system-ui, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #101218;  --surface: #171A22;  --ink: #ECEEF2;
-    --muted: #9AA1AF;  --line: #262A35;
-    --teal: #4FD6DE;  --pink: #FF85BF;
-    --depth-1: #141A24;  --depth-2: #1B2331;  --depth-3: #253043;  --depth-inset: #172030;
-    --cat-1: #7FA8E8;  --cat-2: #E0B04A;  --cat-3: #B39AF0;  --cat-4: #7CC48C;  --cat-5: #F0905F;  --cat-6: #9AAEC2;
-  }
-}`;
+const tokens = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.0/vice-night.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.0/vice-night-kit.css">
+<script src="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.0/vice-night-symbols.js"><\/script>`;
 document.getElementById("tokens").textContent = tokens;
 document.getElementById("copyTokens").onclick = e => copy(tokens, e.target);
 

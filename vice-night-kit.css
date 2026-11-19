@@ -1,0 +1,136 @@
+/* Vice Night kit v1.3.0: page and diagram parts for one-pagers and sites. Load after vice-night.css.
+   Every part works on HTML elements and inside an <svg> (shapes use fill/stroke, text uses fill).
+   Class prefix vn- so nothing collides with site CSS. */
+
+/* ---- Page ---- */
+.vn-body { margin: 0; background: var(--bg); color: var(--ink); font: 400 var(--text-3)/1.5 var(--f-body); }
+.vn-body *, .vn-body *::before, .vn-body *::after { box-sizing: border-box; }
+.vn-stripe { height: 5px; background: var(--sunset); }
+.vn-frame { overflow-x: auto; padding: 24px max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px)); }
+.vn-page { min-width: 900px; max-width: 1500px; margin: 0 auto; padding: 0 24px; }
+
+/* ---- Text ---- */
+.vn-title { font: 700 var(--text-6)/1.1 var(--f-head); letter-spacing: -.02em; margin: 0; }
+.vn-sub { font: 400 var(--text-4)/1.4 var(--f-body); color: var(--muted); margin: 0; }
+.vn-h { font: 600 var(--text-4)/1.3 var(--f-head); margin: 0; }
+.vn-h2 { font: 600 var(--text-5)/1.25 var(--f-head); letter-spacing: -.01em; margin: 0; }
+.vn-eyebrow { font: 400 var(--text-1)/1.4 var(--f-mark); letter-spacing: .22em; text-transform: uppercase; color: var(--teal); }
+.vn-mono { font: 400 var(--text-2)/1.5 var(--f-mono); color: var(--muted); }
+.vn-muted { color: var(--muted); }
+.vn-legend { font: 400 var(--text-2)/1.5 var(--f-mono); color: var(--muted); margin: 0; }   /* one line: "solid = built · dashed = planned" */
+.vn-fig { font: 500 var(--text-2)/1.4 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); margin: 0; }
+.vn-titleblock { font: 400 var(--text-2)/1.5 var(--f-mono); color: var(--muted); margin: 0; }
+.vn-titleblock b { font: 400 var(--text-1) var(--f-mark); letter-spacing: .22em; color: var(--teal); }
+.vn-titleblock a { color: inherit; text-decoration: none; }
+svg .vn-title, svg .vn-h, svg .vn-h2, svg .vn-fig { fill: var(--ink); }
+svg .vn-sub, svg .vn-mono, svg .vn-muted, svg .vn-prop, svg .vn-legend, svg .vn-titleblock { fill: var(--muted); }
+svg .vn-eyebrow { fill: var(--teal); }
+.vn-eyebrow.vn-tick::before { content: ""; display: inline-block; width: 16px; height: 4px; margin-right: 6px; vertical-align: middle; background: var(--teal-bright); }   /* the page's own eyebrow */
+.vn-grad { background: var(--sunset); -webkit-background-clip: text; background-clip: text; color: transparent; }   /* one title word in the gradient */
+svg .vn-grad { fill: url(#vn-sunset); }
+.vn-link { color: var(--teal); text-decoration: underline; text-decoration-color: var(--teal-bright); text-decoration-thickness: 2px; text-underline-offset: 2px; }
+/* After every font shorthand above, so a proposal stays italic whatever else the element is. */
+.vn-prop { font-style: italic; color: var(--muted); }              /* a proposal Kevin hasn't agreed */
+.vn-code { font: 400 var(--text-2)/1.6 var(--f-mono); color: var(--ink); background: var(--depth-inset); border: 1px solid var(--line); border-radius: 4px; padding: var(--space-2) var(--space-3); margin: 0; white-space: pre; }
+
+/* ---- Depth containers ---- */
+.vn-zone, .vn-lane, .vn-card { padding: var(--space-3); }
+.vn-tight, .vn-tight .vn-lane, .vn-tight .vn-card { padding: var(--space-2); }   /* deep nests in a narrow column */
+.vn-zone { background: var(--depth-1); border: 1.5px solid var(--line); border-top: 3px solid var(--teal-bright); border-radius: var(--r); }   /* cyan top edge */
+.vn-lane { background: var(--depth-2); border-radius: var(--r); }
+.vn-card { background: var(--depth-3); border: 1.5px solid var(--line); border-radius: var(--r); }
+.vn-chip { display: inline-block; background: var(--depth-inset); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; font: 400 var(--text-2)/1.6 var(--f-mono); }
+.vn-card.vn-planned { border-style: dashed; border-color: var(--muted); }
+.vn-card.vn-focus { border: 2.5px solid var(--pink-bright); background: var(--pink-tint); }   /* pink marks a special part; use it sparingly */
+svg .vn-zone { fill: var(--depth-1); stroke: var(--line); stroke-width: 1.5; }
+svg .vn-zone-edge { fill: none; stroke: var(--teal-bright); stroke-width: 3; }   /* a line along the top of an SVG zone */
+svg .vn-lane { fill: var(--depth-2); }
+svg .vn-card { fill: var(--depth-3); stroke: var(--line); stroke-width: 1.5; }
+svg .vn-chip { fill: var(--depth-inset); stroke: var(--line); stroke-width: 1; }
+svg .vn-card.vn-planned { stroke: var(--muted); stroke-dasharray: 6 5; }
+svg .vn-card.vn-focus { fill: var(--pink-tint); stroke: var(--pink-bright); stroke-width: 2.5; }
+
+/* ---- Marks ---- */
+.vn-badge { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--teal-bright); color: var(--on-bright); font: 600 11px/1 var(--f-body); }
+.vn-badge.vn-special { background: var(--pink-bright); }             /* the special step */
+svg .vn-badge { fill: var(--teal-bright); } svg .vn-badge.vn-special { fill: var(--pink-bright); }
+svg .vn-badge-t { fill: var(--on-bright); font: 600 11px var(--f-body); text-anchor: middle; }
+.vn-balloon { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--depth-3); border: 1.5px solid var(--ink); color: var(--ink); font: 600 11px/1 var(--f-mono); }
+svg .vn-balloon { fill: var(--depth-3); stroke: var(--ink); stroke-width: 1.5; } svg .vn-balloon-t { fill: var(--ink); font: 600 11px var(--f-mono); text-anchor: middle; }
+.vn-stamp { display: inline-block; padding: 5px 12px; border-radius: 4px; background: var(--pink-bright); color: var(--on-bright);
+  font: 400 var(--text-2)/1.3 var(--f-mark); letter-spacing: .2em; text-transform: uppercase; transform: rotate(-4deg); }
+svg .vn-stamp { fill: var(--pink-bright); stroke: none; } svg .vn-stamp-t { fill: var(--on-bright); font: 400 var(--text-2) var(--f-mark); letter-spacing: .2em; }
+.vn-cat-bar { border-left: 3px solid var(--cat, var(--cat-6)); padding-left: var(--space-2); }
+.vn-cat-tag { display: inline-block; padding: 0 6px; border: 1.5px solid var(--cat, var(--cat-6)); border-radius: 3px; font: 500 11px/1.6 var(--f-mono); color: var(--ink); }
+svg .vn-cat-bar { fill: var(--cat, var(--cat-6)); stroke: none; } svg .vn-cat-tag { fill: none; stroke: var(--cat, var(--cat-6)); stroke-width: 1.5; }
+.vn-status { display: inline-block; padding: 0 7px; border-radius: 3px; font: 500 11px/1.7 var(--f-mono); }
+.vn-status.vn-ok { background: var(--ok-bg); color: var(--ok); }
+.vn-status.vn-warn { background: var(--warn-bg); color: var(--warn); }
+.vn-status.vn-block { background: var(--block-bg); color: var(--block); }
+.vn-stat b { display: block; font: 700 28px/1 var(--f-head); letter-spacing: -.02em; color: var(--ink); }
+.vn-stat b.vn-special { color: var(--pink); }                        /* a number that is special */
+.vn-stat span { font: 400 var(--text-2)/1.4 var(--f-mono); color: var(--muted); }
+.vn-seq-1 { background: var(--seq-1); color: var(--seq-on-1); } .vn-seq-2 { background: var(--seq-2); color: var(--seq-on-2); } .vn-seq-3 { background: var(--seq-3); color: var(--seq-on-3); }
+.vn-seq-4 { background: var(--seq-4); color: var(--seq-on-4); } .vn-seq-5 { background: var(--seq-5); color: var(--seq-on-5); }   /* ramp cells: the top step is pink */
+.vn-swatch { display: inline-block; width: 28px; height: 18px; border: 1px solid var(--line); border-radius: 3px; vertical-align: middle; }   /* set background inline: style="background: var(--seq-3)" */
+
+/* ---- Lines (SVG) ---- */
+.vn-flow { fill: none; stroke: var(--teal-bright); stroke-width: 3; }                   /* the main path */
+.vn-flow.vn-planned { stroke-dasharray: 7 6; }
+.vn-feed { fill: none; stroke: var(--teal); stroke-width: 1.5; stroke-dasharray: 5 5; } /* ties side material to its step */
+.vn-leader { fill: none; stroke: var(--muted); stroke-width: 1; }                       /* callout to its spot */
+.vn-focusline { fill: none; stroke: var(--pink-bright); stroke-width: 3; }
+.vn-rule { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+.vn-hair { fill: none; stroke: var(--line); stroke-width: 1; }
+.vn-arrow { fill: var(--teal-bright); }                                                        /* arrowhead: marker-end="url(#vn-arrowhead)", injected by vice-night-symbols.js */
+
+/* ---- Symbols (vice-night-symbols.js injects the sprite; draw with <use href="#vn-laptop">) ----
+   Strokes keep their width at any size, so symbols drawn at different scales match. */
+.vn-sym-body, .vn-sym-part, .vn-sym-screen, .vn-sym-line { vector-effect: non-scaling-stroke; }
+.vn-sym-body { fill: var(--depth-3); stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
+.vn-sym-part { fill: var(--depth-2); stroke: var(--ink); stroke-width: 1.4; stroke-linejoin: round; }
+.vn-sym-screen { fill: var(--depth-inset); stroke: var(--line); stroke-width: 1; }
+.vn-sym-line { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.vn-sym-dot { fill: var(--muted); }
+.vn-sym-led { fill: var(--teal-bright); }
+
+/* ---- Links to other pages: the whole box is the link ---- */
+a.vn-pagelink { display: block; color: inherit; text-decoration: none; }
+a.vn-pagelink:hover { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+/* ---- Page treatments: set data-sheet on <body>. Default (no attribute) is the slab. ---- */
+[data-sheet="blueprint"] .vn-page { background: var(--surface); border: 1.5px solid var(--ink); outline: 1px solid var(--line); outline-offset: 5px; padding: var(--space-5); }
+[data-sheet="blueprint"] .vn-panel { border: 1px solid var(--ink); padding: var(--space-3) var(--space-4); }
+[data-sheet="poster"] .vn-title { font-size: 64px; letter-spacing: -.035em; }
+[data-sheet="ledger"] .vn-group { border-top: 2px solid var(--ink); padding-top: var(--space-2); }
+[data-sheet="ledger"] .vn-row { border-top: 1px solid var(--line); padding: var(--space-2) 0; }
+[data-sheet="asbuilt"] .vn-card { border-radius: 3px; }
+
+/* ---- Print first: one landscape sheet, light on paper. Pick the sheet with vn-letter or vn-tabloid on <body>. ---- */
+@page vn-letter { size: 11in 8.5in; margin: 0.4in; }
+@page vn-tabloid { size: 17in 11in; margin: 0.4in; }
+.vn-letter { page: vn-letter; }
+.vn-tabloid { page: vn-tabloid; }
+@media print {
+  :root, :root:not([data-theme="light"]), :root[data-theme="dark"] {
+    --bg: #FFFFFF; --surface: #FFFFFF; --ink: #15171D; --muted: #5C6270; --line: #D9E0EA;
+    --teal: #006F7A; --pink: #C2307A; --pink-tint: #FFE8F3;
+    --depth-1: #E9EEF5; --depth-2: #DCE3EE; --depth-3: #FFFFFF; --depth-inset: #F3F6FA;
+    --cat-1: #08879A; --cat-2: #7B4BD6; --cat-3: #C94E18; --cat-4: #1B8557; --cat-5: #987000; --cat-6: #9B3FA6;
+    --ok: #006F7A; --ok-bg: #D6F6F8; --warn: #934600; --warn-bg: #FFE6CC; --block: #B92438; --block-bg: #FFE1E3;
+    --seq-1: #D2F7FA; --seq-2: #8FE9F0; --seq-3: #3FD4E0; --seq-4: #0FA9B8; --seq-5: #FF4FA8;
+    --seq-on-1: #15171D; --seq-on-2: #15171D;
+    color-scheme: light;
+  }
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .vn-body > .vn-stripe { display: none; }
+  /* Gradient text is not safe in PDF (some renderers drop it or paint a block), so the gradient word prints solid teal. */
+  .vn-grad { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--teal); }
+  svg .vn-grad { fill: var(--teal); }
+  .vn-frame { overflow: visible; padding: 0; }
+  .vn-page { min-width: 0 !important; max-width: none !important; width: 100%; padding: 0; zoom: var(--print-zoom, 1); }   /* a page a few lines over one sheet sets --print-zoom: .97 */
+  [data-sheet="blueprint"] .vn-page { padding: var(--space-4); outline: none; }
+  svg { min-width: 0 !important; max-width: 100% !important; }
+}
