@@ -24,7 +24,7 @@ The current theme. A neutral base with Miami Vice cyan and pink as accents.
 | `--muted` | `#5C6270` | `#9AA1AF` | Secondary text |
 | `--line` | `#D9E0EA` | `#2A3546` | Borders, dividers |
 | `--teal` | `#006F7A` | `#3DE0E8` | Text-safe teal: links, labels |
-| `--teal-bright` | `#22D3EE` | `#22D3EE` | Cyan fills, edges, lines: step badges, zone edge, flow |
+| `--teal-bright` | `#22D3EE` | `#22D3EE` | Cyan fills and lines: step badges, flow, link underlines |
 | `--pink` | `#C2307A` | `#FF6FB5` | Text-safe pink: a special label or number |
 | `--pink-bright` | `#FF4FA8` | `#FF4FA8` | Pink fills and borders: the special parts of a page |
 | `--pink-tint` | `#FFE8F3` | `#3A1230` | Fill behind a special part |
@@ -52,9 +52,9 @@ Type: Syncopate (wordmark and small caps labels only), Sora headings, IBM Plex S
 
 - Neutrals carry the page. Cyan does the working jobs; pink is kept for what is special.
 - Text uses `--teal` and `--pink`. The `-bright` pair is for fills, edges and lines, never small text: on the light background cyan is 1.68:1 and pink 2.82:1, so anything a reader must read carries ink text (`--on-bright`) or sits next to a label.
-- Cyan (`--teal-bright`): step badges, flow lines, the top edge of a zone, link underlines.
+- Cyan (`--teal-bright`): step badges, flow lines, link underlines.
 - Pink (`--pink-bright` on `--pink-tint`): the special parts of a page, used sparingly: the special step, the card that matters, a stamp, one number.
-- The teal-to-pink gradient (`--sunset`) appears only as the top stripe or on one title word. Gradient text prints solid teal, because PDF renderers handle it badly.
+- The cyan-to-pink gradient (`--sunset`) appears as the top stripe, as the top edge of zones and blueprint figure panels, and on one title word. Gradient text prints solid teal, because PDF renderers handle it badly.
 - Primary buttons are ink. No gradient backgrounds, neon glows, or palm imagery.
 - Depth (cool slate): nested containers step one level darker per level (lighter in dark mode), never alternating; cards are always `--depth-3`. Teal text passes on every depth fill (lowest 4.58:1, on `--depth-2`); pink text does not (4.07:1), so pink labels stay on cards.
 - Category colors (`--cat-1`…`--cat-6`): only on diagrams and dashboards where color = category (VLANs, zones, tiers). One hue per category, held constant across pages; used as a 3px bar, an outline or a small tag, never a fill or body text; the category's name always sits next to it. Every hue clears 3:1 on all light surfaces (lowest 3.29:1, aqua on `--depth-2`).
@@ -67,8 +67,8 @@ A treatment is the look of a whole page: its frame, where the title sits, and th
 
 | Treatment | Attribute | Looks like | Use for |
 |---|---|---|---|
-| Slab | none (default) | A blue-grey panel holding white cards | Maps and lanes |
-| Blueprint | `data-sheet="blueprint"` | One ruled sheet border, numbered figures in cyan-edged panels, title block bottom right | One device or service from several angles |
+| Slab | none (default) | A blue-grey panel with a gradient top edge, holding white cards | Maps and lanes |
+| Blueprint | `data-sheet="blueprint"` | One ruled sheet border, numbered figures in gradient-edged panels, a pink edge on the title block bottom right | One device or service from several angles |
 | Poster | `data-sheet="poster"` | No frame or boxes, one big drawing, a large title | One idea or an overview |
 | Ledger | `data-sheet="ledger"` | Ruled groups and rows instead of cards | Reference sheets and standards |
 | As-built | `data-sheet="asbuilt"` | Dense current-state map, category colors as bars and tags | A system as it runs today |
@@ -101,7 +101,7 @@ Semantic versioning. Token value changes are minor; renamed or removed tokens ar
 
 ## Changelog
 
-- **v1.3.1** (2026-11-18): blueprint treatment picks up the accents: figure panels get a cyan top edge (`vn-flat` opts a panel out), and `vn-fig` inside a blueprint sheet is a Sora heading that takes a cyan `vn-badge` for the figure number.
+- **v1.3.1** (2026-11-18): more pink. Zones and blueprint figure panels get a top edge that runs cyan to pink (it was solid cyan on zones and an ink rule on panels); in an SVG the edge is `<rect class="vn-zone-edge">`. In a blueprint sheet `vn-flat` opts a panel out of the edge, `vn-special` gives the title block a pink edge, and `vn-fig` is a Sora heading that takes a cyan `vn-badge` for the figure number.
 - **v1.3.0** (2026-11-18):
   - Fix: light `--teal` `#00808C` → `#006F7A`; the old value was 4.38:1 on the page background, below the 4.5:1 minimum for text.
   - `--bg` and `--line` take the cooler values the one-page designs already used (`#F5F7FA`, `#D9E0EA`; dark `#0E1219`, `#2A3546`).
