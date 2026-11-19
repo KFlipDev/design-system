@@ -68,7 +68,7 @@ A treatment is the look of a whole page: its frame, where the title sits, and th
 | Treatment | Attribute | Looks like | Use for |
 |---|---|---|---|
 | Slab | none (default) | A blue-grey panel holding white cards | Maps and lanes |
-| Blueprint | `data-sheet="blueprint"` | One ruled sheet border, numbered figures, title block bottom right | One device or service from several angles |
+| Blueprint | `data-sheet="blueprint"` | One ruled sheet border, numbered figures in cyan-edged panels, title block bottom right | One device or service from several angles |
 | Poster | `data-sheet="poster"` | No frame or boxes, one big drawing, a large title | One idea or an overview |
 | Ledger | `data-sheet="ledger"` | Ruled groups and rows instead of cards | Reference sheets and standards |
 | As-built | `data-sheet="asbuilt"` | Dense current-state map, category colors as bars and tags | A system as it runs today |
@@ -78,9 +78,9 @@ A treatment is the look of a whole page: its frame, where the title sits, and th
 Pin to a release so later changes don't restyle a project unexpectedly:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.0/vice-night.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.0/vice-night-kit.css">
-<script src="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.0/vice-night-symbols.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.1/vice-night.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.1/vice-night-kit.css">
+<script src="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.1/vice-night-symbols.js"></script>
 ```
 
 Only the first line is needed for the tokens alone. A page that cannot load from a CDN keeps a copy of the three files next to it and links them by relative path.
@@ -101,6 +101,7 @@ Semantic versioning. Token value changes are minor; renamed or removed tokens ar
 
 ## Changelog
 
+- **v1.3.1** (2026-11-18): blueprint treatment picks up the accents: figure panels get a cyan top edge (`vn-flat` opts a panel out), and `vn-fig` inside a blueprint sheet is a Sora heading that takes a cyan `vn-badge` for the figure number.
 - **v1.3.0** (2026-11-18):
   - Fix: light `--teal` `#00808C` → `#006F7A`; the old value was 4.38:1 on the page background, below the 4.5:1 minimum for text.
   - `--bg` and `--line` take the cooler values the one-page designs already used (`#F5F7FA`, `#D9E0EA`; dark `#0E1219`, `#2A3546`).

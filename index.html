@@ -128,7 +128,7 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
 .sheets b { font: 600 15px var(--f-head); }
 .sheets code { font: 12px var(--f-mono); color: var(--muted); }
 .sheets small { font-size: 13px; color: var(--muted); line-height: 1.4; }
-.mini { fill: var(--bg); stroke: var(--line); stroke-width: 1.5; } .thin { stroke-width: 1; } .minit { font: 700 15px var(--f-head); fill: var(--ink); }
+.mini { fill: var(--bg); stroke: var(--line); stroke-width: 1.5; } .bp-p { fill: var(--surface); stroke: var(--line); stroke-width: 1; } .thin { stroke-width: 1; } .minit { font: 700 15px var(--f-head); fill: var(--ink); }
 .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; max-width: 460px; }
 .week span { text-align: center; font: 500 12px/1 var(--f-mono); padding: 8px 0; border-radius: 4px; }
 .week small { text-align: center; font: 12px var(--f-mono); color: var(--muted); }
@@ -144,7 +144,7 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
     <button class="ghost" id="themeBtn" type="button">Switch to dark</button>
   </header>
 
-  <p class="eyebrow">Design system · v1.3.0</p>
+  <p class="eyebrow">Design system · v1.3.1</p>
   <h1>Vice Night</h1>
   <p class="lede">A quiet, neutral base with Miami Vice cyan and pink as accents. Cyan does the working jobs: links, steps, flow, the edge of a zone. Pink marks what is special. The two meet in a thin cyan-to-pink stripe that recalls the Heat Vice jersey trim.</p>
 
@@ -354,7 +354,7 @@ pre .k { color: #F06FAE; } pre .s { color: #4FD6DE; } pre .c { color: #7D8494; }
     <header><h2>Page treatments</h2><p>A treatment is the look of a whole page: its frame, where the title sits, and the drawing style. Pages in a set take different ones, so they are easy to tell apart. Set it with <code>data-sheet</code> on body.</p></header>
     <div class="sheets">
       <figure><svg viewBox="0 0 84 56" role="img" aria-label="Slab thumbnail"><rect class="mini" width="84" height="56" rx="2"/><rect class="vn-zone" x="7" y="14" width="70" height="35" rx="2"/><rect class="vn-card" x="12" y="20" width="18" height="23" rx="1.5"/><rect class="vn-card" x="33" y="20" width="18" height="23" rx="1.5"/><rect class="vn-card" x="54" y="20" width="18" height="23" rx="1.5"/><path class="vn-zone-edge thin" style="stroke-width:1.5" d="M8 14.5h68"/><path class="vn-rule" d="M7 8h26"/></svg><b>Slab</b><code>default, no attribute</code><small>A blue-grey panel holding white cards. For maps and lanes.</small></figure>
-      <figure><svg viewBox="0 0 84 56" role="img" aria-label="Blueprint thumbnail"><rect class="mini" width="84" height="56" rx="2"/><rect class="vn-rule" x="4" y="4" width="76" height="48"/><path class="vn-rule thin" d="M4 30h76M42 4v26M54 42h26M54 30v22"/></svg><b>Blueprint</b><code>data-sheet="blueprint"</code><small>A ruled sheet, numbered figures, title block bottom right. For one device or service from several angles.</small></figure>
+      <figure><svg viewBox="0 0 84 56" role="img" aria-label="Blueprint thumbnail"><rect class="mini" width="84" height="56" rx="2"/><rect class="vn-rule" x="4" y="4" width="76" height="48"/><rect class="bp-p" x="8" y="9" width="32" height="17"/><path class="vn-zone-edge" style="stroke-width:1.5" d="M8 9h32"/><rect class="bp-p" x="44" y="9" width="32" height="17"/><path class="vn-zone-edge" style="stroke-width:1.5" d="M44 9h32"/><rect class="bp-p" x="8" y="31" width="42" height="16"/><path class="vn-zone-edge" style="stroke-width:1.5" d="M8 31h42"/><rect class="bp-p" x="54" y="31" width="22" height="16"/><path class="vn-zone-edge" style="stroke-width:1.5" d="M54 31h22"/></svg><b>Blueprint</b><code>data-sheet="blueprint"</code><small>A ruled sheet, numbered figures in cyan-edged panels, title block bottom right. For one device or service from several angles.</small></figure>
       <figure><svg viewBox="0 0 84 56" role="img" aria-label="Poster thumbnail"><rect class="mini" width="84" height="56" rx="2"/><use href="#vn-laptop" x="34" y="14" width="44" height="30.8"/><text class="minit" x="7" y="24">Aa</text><path class="vn-rule" d="M7 46h20"/></svg><b>Poster</b><code>data-sheet="poster"</code><small>No frame or boxes, one big drawing, a large title. For one idea or an overview.</small></figure>
       <figure><svg viewBox="0 0 84 56" role="img" aria-label="Ledger thumbnail"><rect class="mini" width="84" height="56" rx="2"/><path class="vn-rule" d="M7 10h70M7 32h70"/><path class="vn-hair" style="stroke: var(--muted); stroke-width: .75" d="M7 17h70M7 24h70M7 39h70M7 46h70"/></svg><b>Ledger</b><code>data-sheet="ledger"</code><small>Ruled groups and rows instead of cards. For reference sheets and standards.</small></figure>
       <figure><svg viewBox="0 0 84 56" role="img" aria-label="As-built thumbnail"><rect class="mini" width="84" height="56" rx="2"/><rect class="vn-card thin" x="7" y="7" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-1)" x="7" y="7" width="3" height="11"/><rect class="vn-card thin" x="32" y="7" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-1)" x="32" y="7" width="3" height="11"/><rect class="vn-card thin" x="57" y="7" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-1)" x="57" y="7" width="3" height="11"/><rect class="vn-card thin" x="7" y="23" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-3)" x="7" y="23" width="3" height="11"/><rect class="vn-card thin" x="32" y="23" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-3)" x="32" y="23" width="3" height="11"/><rect class="vn-card thin" x="57" y="23" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-3)" x="57" y="23" width="3" height="11"/><rect class="vn-card thin" x="7" y="39" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-4)" x="7" y="39" width="3" height="11"/><rect class="vn-card thin" x="32" y="39" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-4)" x="32" y="39" width="3" height="11"/><rect class="vn-card thin" x="57" y="39" width="21" height="11" rx="1"/><rect class="vn-cat-bar" style="--cat: var(--cat-4)" x="57" y="39" width="3" height="11"/></svg><b>As-built</b><code>data-sheet="asbuilt"</code><small>A dense current-state map with category colors as bars and tags. For a system as it runs today.</small></figure>
@@ -434,9 +434,9 @@ SW.forEach(([name, tok, light, dark, role]) => {
   box.appendChild(d);
 });
 
-const tokens = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.0/vice-night.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.0/vice-night-kit.css">
-<script src="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.0/vice-night-symbols.js"><\/script>`;
+const tokens = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.1/vice-night.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.1/vice-night-kit.css">
+<script src="https://cdn.jsdelivr.net/gh/KFlipDev/design-system@v1.3.1/vice-night-symbols.js"><\/script>`;
 document.getElementById("tokens").textContent = tokens;
 document.getElementById("copyTokens").onclick = e => copy(tokens, e.target);
 

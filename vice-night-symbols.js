@@ -1,4 +1,4 @@
-/* Vice Night symbols v1.3.0: eight line drawings as SVG <symbol>s, plus the arrowhead and gradient defs.
+/* Vice Night symbols v1.3.1: eight line drawings as SVG <symbol>s, plus the arrowhead and gradient defs.
    A script (not an external .svg) because <use href="file.svg#id"> does not load from file:// pages.
    Use: <svg viewBox="0 0 120 84"><use href="#vn-laptop"/></svg>, then put real text on top in the page.
    Colors come from vice-night-kit.css (.vn-sym-*), so symbols follow light, dark and print. */
